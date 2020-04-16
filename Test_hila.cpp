@@ -60,18 +60,18 @@ TEST_CASE("Test 1 find") {
     
     T.addMother("Yosef", "Efrat").addFather("Yosef", "Shmuel").addFather("Shmuel", "Israel");
 
-    CHECK(T.find("grandmother") == string("Efrat"));
-    CHECK(T.find("grandfather") == string("Shmuel"));
-    CHECK(T.find("great-grandfather") == string("Israel"));
-    CHECK_THROWS(T.find("great-grandmother"));
+    CHECK(T.find("great-grandmother") == string("Efrat"));
+    CHECK(T.find("great-grandfather") == string("Shmuel"));
+    CHECK(T.find("great-great-grandfather") == string("Israel"));
+    CHECK_THROWS(T.find("great-great-grandmother"));
 
     T.addFather("Yonatan", "Ofer").addMother("Yonatan", "Sima").addMother("Simha", "Ester"); 
 
-    CHECK((T.find("grandfather") == string("Shmuel") || T.find("grandfather") == string("Ofer"))); 
-    CHECK((T.find("grandmother") == string("Efrat") 
-        || T.find("grandmother") == string("Sima")
-        || T.find("grandmother") == string("Ester"))); 
-    CHECK_THROWS(T.find("great-great-grandfather"));
+    CHECK((T.find("great-grandfather") == string("Shmuel") || T.find("great-grandfather") == string("Ofer"))); 
+    CHECK((T.find("great-grandmother") == string("Efrat") 
+        || T.find("great-grandmother") == string("Sima")
+        || T.find("great-grandmother") == string("Ester"))); 
+    CHECK_THROWS(T.find("great-great-great-grandfather"));
     CHECK_THROWS(T.find("great-great-great-great-grandfather"));
 }
 
